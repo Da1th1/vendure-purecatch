@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "@vendure/ui-devkit": "^3.2.2"
+  }
+}

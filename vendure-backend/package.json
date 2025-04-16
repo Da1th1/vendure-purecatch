@@ -20,6 +20,7 @@
     "@vendure/create": "^2.2.3",
     "@vendure/email-plugin": "^2.2.4",
     "@vendure/payments-plugin": "^2.2.4",
+    "@vendure/ui-devkit": "^3.2.2",
     "dotenv": "16.4.5",
     "lucide-react": "^0.488.0",
     "pg": "8.11.5",

@@ -7,6 +7,7 @@ import {
 import { defaultEmailHandlers, EmailPlugin, EmailPluginDevModeOptions, EmailPluginOptions } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
+import { compileUiExtensions, setBranding } from '@vendure/ui-devkit/compiler';
 import { StripePlugin } from '@vendure/payments-plugin/package/stripe';
 import 'dotenv/config';
 import path from 'path';
@@ -120,9 +121,23 @@ export const config: VendureConfig = {
             route: 'admin',
             port: 3002,
             adminUiConfig: {
+                brand: 'Pure Catch',
+                hideVendureBranding: true,
                 apiHost: isDev ? `http://${process.env.PUBLIC_DOMAIN}` : `https://${process.env.PUBLIC_DOMAIN}`,
                 // apiPort: +(process.env.PORT || 3000),
             },
+            app: compileUiExtensions({
+                outputPath: path.join(__dirname, '../admin-ui'),
+                extensions: [
+                    setBranding({
+                        // The small logo appears in the top left of the screen
+                        smallLogoPath: path.join(__dirname, 'images/Pure Catch Logo.svg'),
+                        // The large logo is used on the login page
+                        largeLogoPath: path.join(__dirname, 'images/Pure Catch Logo.svg'),
+                        faviconPath: path.join(__dirname, 'images/favicon.ico'),
+                    }),
+                ],
+            }),
         }),
     ],
 };
