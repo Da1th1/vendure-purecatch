@@ -14,7 +14,8 @@
     "start:cf": "cross-env NODE_ENV=production yarn run dev:wrangler",
     "start": "remix-serve ./build/index.js",
     "generate": "graphql-codegen --config codegen.yml",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "npm rebuild sharp --platform=linux --arch=x64"
   },
   "dependencies": {
     "@graphql-codegen/typescript-generic-sdk": "^3.0.4",
