@@ -2,6 +2,7 @@ import { useLoaderData } from '@remix-run/react';
 import { getCollections } from '~/providers/collections/collections';
 import { CollectionCard } from '~/components/collections/CollectionCard';
 import type { LoaderFunctionArgs } from '@remix-run/node';
+import { json } from '@remix-run/node';
 import { useTranslation } from 'react-i18next';
 import { Hero } from '~/components/hero/Hero';
 import { FeaturedProducts } from '~/components/sections/FeaturedProducts';
@@ -10,9 +11,9 @@ import { SupportAndDistribution } from '~/components/sections/SupportAndDistribu
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const collections = await getCollections(request, { take: 20 });
-  return {
-    collections,
-  };
+  return json({
+    collections: collections ?? [],
+  });
 }
 
 export default function Index() {
@@ -45,7 +46,7 @@ export default function Index() {
           <div className="-my-2">
             <div className="box-content py-2 px-2 relative overflow-x-auto xl:overflow-visible">
               <div className="grid justify-items-center grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:gap-x-8">
-                {collections.map((collection) => (
+                {collections?.map((collection) => (
                   <CollectionCard key={collection.id} collection={collection} />
                 ))}
               </div>
