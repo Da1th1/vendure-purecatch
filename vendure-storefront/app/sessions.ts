@@ -25,15 +25,13 @@ export async function getSessionStorage() {
     return sessionStorage;
   }
   const factory = await getCookieSessionStorageFactory();
-  const sessionSecret = process.env.SESSION_SECRET || 'default-secret-key';
   sessionStorage = factory({
     cookie: {
       name: 'vendure_remix_session',
       httpOnly: true,
       path: '/',
       sameSite: 'lax',
-      secrets: [sessionSecret],
-      secure: process.env.NODE_ENV === 'production',
+      secrets: ['awdbhbjahdbaw'],
     },
   });
   return sessionStorage;
