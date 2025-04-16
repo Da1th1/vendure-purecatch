@@ -15,6 +15,7 @@ import {
 } from '@remix-run/react';
 import stylesheet from './tailwind.css';
 import { Header } from './components/header/Header';
+import { CartLoaderData } from './routes/api/active-order';
 import {
   DataFunctionArgs,
   json,
@@ -118,7 +119,9 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" type="image/png"></link>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <Meta />
         <Links />
       </head>
@@ -140,7 +143,7 @@ export default function App() {
         <CartTray
           open={open}
           onClose={setOpen}
-          activeOrder={activeOrder}
+          activeOrder={activeOrder as CartLoaderData['activeOrder']}
           adjustOrderLine={adjustOrderLine}
           removeItem={removeItem}
         />

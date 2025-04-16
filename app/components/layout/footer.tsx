@@ -1,9 +1,10 @@
-import { RootLoaderData } from '~/root';
-import { Link } from '@remix-run/react';
-import { useTranslation } from 'react-i18next';
-import { Facebook, Instagram } from 'lucide-react';
-import { Logo } from '../Logo';
-import { TronSeparator } from '~/components/ui/tron-separator';
+'use client';
+
+import Link from "next/link";
+import Image from "next/image";
+import { TronSeparator } from "@/components/ui/tron-separator";
+import { Facebook, Instagram } from "lucide-react";
+import Logo from '../Logo';
 
 const navigation = {
   main: [
@@ -36,40 +37,19 @@ const navigation = {
   ],
 };
 
-export default function Footer({
-  collections,
-}: {
-  collections: RootLoaderData['collections'];
-}) {
-  const { t } = useTranslation();
-
+export function Footer() {
   return (
     <footer className="bg-black/80 backdrop-blur-sm border-t border-cyan-500/20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Logo and Collections */}
+          {/* Logo and About */}
           <div className="space-y-4">
-            <Link to="/" className="block">
+            <Link href="/" className="block">
               <Logo />
             </Link>
             <p className="text-gray-400 text-sm">
               Elevating goalkeeper performance through innovative equipment and training solutions.
             </p>
-            <div className="mt-4">
-              <h3 className="text-cyan-400 font-semibold mb-4">Collections</h3>
-              <ul className="space-y-2">
-                {collections.map((collection) => (
-                  <li key={collection.id}>
-                    <Link
-                      to={'/collections/' + collection.slug}
-                      className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
-                    >
-                      {collection.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -79,7 +59,7 @@ export default function Footer({
               {navigation.main.map((item) => (
                 <li key={item.name}>
                   <Link
-                    to={item.href}
+                    href={item.href}
                     className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
                   >
                     {item.name}
@@ -102,7 +82,7 @@ export default function Footer({
                 Office Hours: 08:00 - 18:00
               </p>
               <p className="mt-4">
-                <Link to="mailto:info@purecatch.ie" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                <Link href="mailto:info@purecatch.ie" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                   info@purecatch.ie
                 </Link>
               </p>
@@ -118,7 +98,7 @@ export default function Footer({
             {navigation.social.map((item) => (
               <Link
                 key={item.name}
-                to={item.href}
+                href={item.href}
                 className="text-gray-400 hover:text-cyan-400 transition-colors"
               >
                 <span className="sr-only">{item.name}</span>
@@ -129,13 +109,13 @@ export default function Footer({
           <div className="text-gray-400 text-sm">
             <p>© {new Date().getFullYear()} Pure Catch. All rights reserved.</p>
             <p className="mt-1">
-              <Link to="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
+              <Link href="/privacy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
               {" · "}
-              <Link to="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
+              <Link href="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
             </p>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+} 
